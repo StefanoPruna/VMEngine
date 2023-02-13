@@ -1,0 +1,2 @@
+C:\Users\makem\Documents\GitHub\VMEngine\VMEngine\.vs
+C:\Users\makem\Documents\GitHub\VMEngine\VMEngine\x64
