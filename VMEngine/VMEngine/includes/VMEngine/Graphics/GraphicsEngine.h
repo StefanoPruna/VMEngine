@@ -1,5 +1,5 @@
 #pragma once
-
+#include "VMEngine/CoreMinimal.h"
 #include "SDL2//SDL.h"
 
 class GraphicsEngine
@@ -16,10 +16,22 @@ public:
 	//Clear the old frame
 	void ClearGraphics();
 
+	//Handle the rendering of our graphics
 	//Return the sdl window
+	void Draw();
+
 	SDL_Window* GetWindow() const;
+
+	//Add a new VAO to the VAOStack
+	void CreateVAO();
 
 private:
 	SDL_Window* SdlWindow;
 	SDL_GLContext SdlGLContext;
+	//Stack all the VAOs
+	VAOStack VAOs;
+	//Handle wireframe mode
+	void HandleWireFrameMode(bool bShowWireFrameMode);
+	//set wireframe
+	bool bWireFrameMode;
 };

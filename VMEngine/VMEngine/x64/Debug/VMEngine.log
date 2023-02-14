@@ -1,4 +1,8 @@
-﻿  GraphicsEngine.cpp
+﻿  Source.cpp
+  GraphicsEngine.cpp
+  VertexArrayObject.cpp
+C:\Users\makem\Documents\GitHub\VMEngine\VMEngine\VMEngine\source\VMEngine\Graphics\VertexArrayObject.cpp(80,11): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Generating Code...
   VMEngine.vcxproj -> C:\Users\makem\Documents\GitHub\VMEngine\VMEngine\x64\Debug\VMEngine.exe
   C:\Users\makem\Documents\GitHub\VMEngine\VMEngine\\VMEngine\lib\glew32.dll
   C:\Users\makem\Documents\GitHub\VMEngine\VMEngine\\VMEngine\lib\SDL2.dll

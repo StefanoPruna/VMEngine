@@ -16,7 +16,7 @@ void Game::DestroyGameInstance()
 
 void Game::Start(const char* WTitle, bool bFullscreen, int WWidth, int WHeight)
 {
-	Graphics = new GraphicsEngine();
+	Graphics = make_shared<GraphicsEngine>();
 
 	if (!Graphics->InitGE(WTitle, bFullscreen, WWidth, WHeight))
 	{
@@ -37,11 +37,17 @@ Game::Game()
 
 Game::~Game()
 {
+	//Destroy the graphics from memory with share pointer
+	Graphics = nullptr;
 	cout << "Game Over..." << endl;
 }
 
 void Game::Run()
 {
+	if (!bIsGameOver)
+		//Create the vertex
+		Graphics->CreateVAO();
+
 	while (!bIsGameOver)
 	{
 		ProcessInput();
@@ -56,7 +62,20 @@ void Game::Run()
 
 void Game::ProcessInput()
 {
-	//TO DO input
+	SDL_Event PollEvent;
+
+	//Using ampisand
+	while (SDL_PollEvent(&PollEvent))
+	{
+		switch (PollEvent.type)
+		{
+		case SDL_QUIT:
+			bIsGameOver = true;
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 void Game::Update()
@@ -66,7 +85,7 @@ void Game::Update()
 
 void Game::Draw()
 {
-	// TO DO graphics
+	Graphics->Draw();
 }
 
 void Game::CloseGame()

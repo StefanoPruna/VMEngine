@@ -1,8 +1,6 @@
 #pragma once
 #include "VMEngine/Graphics/GraphicsEngine.h"
-#include <iostream>
-
-using namespace std;
+#include "CoreMinimal.h"
 
 class Game
 {
@@ -37,5 +35,5 @@ private:
 	//boolean that ends the game
 	bool bIsGameOver;
 
-	GraphicsEngine* Graphics;
+	GraphicsEnginePtr Graphics;
 };

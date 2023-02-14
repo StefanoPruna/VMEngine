@@ -2,7 +2,8 @@
 
 int main(int argc, char** argv) 
 {
-	Game::GetGameInstance().Start("VMEngine | An OpenGl Engine", false, 1200, 720);
+	//changing the resolution, now it's 1:1
+	Game::GetGameInstance().Start("VMEngine | An OpenGl Engine", false, 720, 720);
 
 	Game::GetGameInstance();
 

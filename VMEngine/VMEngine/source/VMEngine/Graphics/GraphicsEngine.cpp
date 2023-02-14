@@ -1,8 +1,6 @@
 #include "VMEngine/Graphics/GraphicsEngine.h"
 #include "GLEW/glew.h"
-#include <iostream>
-
-using namespace std;
+#include "VMEngine/Graphics/VertexArrayObject.h"
 
 GraphicsEngine::GraphicsEngine()
 {
@@ -12,13 +10,14 @@ GraphicsEngine::GraphicsEngine()
 
 GraphicsEngine::~GraphicsEngine()
 {
-	cout << "Destroy" << "\n";
 	//Delete the SDL window from memory
 	SDL_DestroyWindow(SdlWindow);
 	//destroy the GL 
 	SDL_GL_DeleteContext(SdlGLContext);
 	//close the SDL framework
 	SDL_Quit();
+
+	cout << "Destroy the Graphic Engine..." << "\n";
 }
 
 bool GraphicsEngine::InitGE(const char* WTitle, bool bFullscreen, int WWidth, int WHeight)
@@ -102,7 +101,47 @@ void GraphicsEngine::ClearGraphics()
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
+void GraphicsEngine::Draw()
+{
+	ClearGraphics();
+
+	HandleWireFrameMode(false);
+
+	//foreach loop
+	for (VAOPtr VAO : VAOs)
+	{
+		//Draw each VAO
+		VAO->Draw();
+	}
+
+	PresentGraphics();
+}
+
 SDL_Window* GraphicsEngine::GetWindow() const
 {
 	return SdlWindow;
+}
+
+void GraphicsEngine::CreateVAO()
+{
+	//Create a new VAO as a shared pointer
+	VAOPtr NewVAO = make_shared<VAO>();
+	//Assign value/object to the stack
+	VAOs.push_back(NewVAO);
+}
+
+void GraphicsEngine::HandleWireFrameMode(bool bShowWireFrameMode)
+{
+	//if wireframe mode is set, change it and viceversa
+	if (bShowWireFrameMode != bWireFrameMode)
+	{
+		//change how OpenGL renders between the vertices
+		bWireFrameMode = bShowWireFrameMode;
+		if (bWireFrameMode)
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		else
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+		cout << "WireFrame mode updated..." << endl;
+	}
 }
