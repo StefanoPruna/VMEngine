@@ -31,17 +31,28 @@ const IndicesMatrix PolyIndices
 
 const PositionMatrix CirclePositions
 {
-	// x	//y		//z
-	-0.5f,	-0.5f,	0.0f,	//bottom left - index 0
-	 0.5f,	-0.5f,	0.0f,	//bottom right - index 1
-	 0.5f,	 0.5f,	0.0f,	//top right - index 2
-	-0.5f,	 0.5f,  0.0f   //top left - index 3
+	// x	 //y	  //z
+    0.0f,    0.0f,	 0.0f,	 //bottom left - index 0
+  -0.25f,   -0.5f,	 0.0f,	 //bottom right - index 1
+   0.25f,   -0.5f,	 0.0f,	 //top right - index 2
+	0.5f,  -0.25f,   0.0f,   //top left - index 3
+    0.5f,	0.25f,   0.0f,   //left - index 4
+   0.25f,    0.5f,   0.0f,	 //top - index 5
+  -0.25f,    0.5f,   0.0f,   //right - index 6
+   -0.5f,	0.25f,	 0.0f,	 //bottom - index 7
+   -0.5f,  -0.25f,   0.0f    //index 8
 };
 
 const IndicesMatrix CircleIndices
 {
-	0, 3, 1,	//Triangle 1
-	3, 2, 1		//Triangle 2
+	0, 1, 2,	//Triangle 1
+	0, 2, 3,	//Triangle 2
+	0, 3, 4,	//Triangle 3
+	0, 4, 5,	//Triangle 4
+	0, 5, 6,    //Triangle 5
+	0, 6, 7,    //Triangle 6
+	0, 7, 8,	//Triangle 7
+	0, 8, 1		//Triangle 8
 };
 
 class VertexArrayObject
