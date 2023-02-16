@@ -8,8 +8,8 @@ VertexArrayObject::VertexArrayObject()
 
 	/*Shape.PositionMatrix = TrianglePositions;
 	Shape.IndecesMatrix = TriangleIndices;*/
-	Shape.PositionMatrix = PolyPositions;
-	Shape.IndecesMatrix = PolyIndices;
+	/*Shape.PositionMatrix = PolyPositions;
+	Shape.IndecesMatrix = PolyIndices;*/
 	Shape.PositionMatrix = CirclePositions;
 	Shape.IndecesMatrix = CircleIndices;
 
