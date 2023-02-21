@@ -137,6 +137,7 @@
     <ClInclude Include="includes\VMEngine\CoreMinimal.h" />
     <ClInclude Include="includes\VMEngine\Game.h" />
     <ClInclude Include="includes\VMEngine\Graphics\GraphicsEngine.h" />
+    <ClInclude Include="includes\VMEngine\Graphics\ShaderProgram.h" />
     <ClInclude Include="includes\VMEngine\Graphics\VertexArrayObject.h" />
   </ItemGroup>
   <ItemGroup>
@@ -144,7 +145,12 @@
     <ClCompile Include="source\stb_image\stb_image.cpp" />
     <ClCompile Include="source\VMEngine\Game.cpp" />
     <ClCompile Include="source\VMEngine\Graphics\GraphicsEngine.cpp" />
+    <ClCompile Include="source\VMEngine\Graphics\ShaderProgram.cpp" />
     <ClCompile Include="source\VMEngine\Graphics\VertexArrayObject.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Game\Shaders\SimpleShader\SimpleShader.sfrag" />
+    <None Include="Game\Shaders\SimpleShader\SimpleShader.svert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

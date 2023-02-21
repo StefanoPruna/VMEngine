@@ -2,16 +2,44 @@
 #include "GLEW/glew.h"
 
 //Constructors - to define and initialise objects from the header
-VertexArrayObject::VertexArrayObject()
+VertexArrayObject::VertexArrayObject(GeometricShapes ChosenShape)
 {
 	ID = EAB = VAB = 0;
+
+	//Localised version of the chosen matrices
+	PositionMatrix ChosenPositions = PositionMatrix();
+	IndicesMatrix ChosenIndices = IndicesMatrix();
+
+	switch (ChosenShape)
+	{
+	case GeometricShapes::Triangle :
+		ChosenPositions = TrianglePositions;
+		ChosenIndices = TriangleIndices;
+		break;
+	case GeometricShapes::Polygon :
+		ChosenPositions = PolyPositions;
+		ChosenIndices = PolyIndices;
+		break;
+	case GeometricShapes::Circle :
+		ChosenPositions = CirclePositions;
+		ChosenIndices = CircleIndices;
+		break;
+	default :
+		break;
+	}
 
 	/*Shape.PositionMatrix = TrianglePositions;
 	Shape.IndecesMatrix = TriangleIndices;*/
 	/*Shape.PositionMatrix = PolyPositions;
+<<<<<<< Updated upstream
 	Shape.IndecesMatrix = PolyIndices;*/
+=======
+	Shape.IndecesMatrix = PolyIndices;
+>>>>>>> Stashed changes
 	Shape.PositionMatrix = CirclePositions;
-	Shape.IndecesMatrix = CircleIndices;
+	Shape.IndecesMatrix = CircleIndices;*/
+	Shape.PositionMatrix = ChosenPositions;
+	Shape.IndecesMatrix = ChosenIndices;
 
 	// Handle the positions Matrix
 	//Create the ID for the VAO
@@ -46,12 +74,24 @@ VertexArrayObject::VertexArrayObject()
 		0,					//data set - 0 = the first data set in the array
 		3,					//How many vertices/numbers in our matrix we need to make a triangle
 		GL_FLOAT, GL_FALSE, //data type, whether we normalise the values
-		sizeof(float) * 3,  //stride - the length it takes to get to each number
+		sizeof(float) * 6,  //stride - the length it takes to get to each number
 		(void*)0			//override to 0, the offset of how many number to skip in the matrix
 	);
 
 	// enable the vertex array
 	glEnableVertexAttribArray(0);
+
+	//Assign the colour to the shader
+	glVertexAttribPointer(
+		1,
+		3,
+		GL_FLOAT, GL_FALSE,
+		sizeof(float) * 6,
+		(void*)(3 * sizeof(float)) //skips the first 3 numbers from the matrix
+		);
+
+	//enable the colour array
+	glEnableVertexAttribArray(1);
 
 	//Clear the buffer
 	glBindVertexArray(0);

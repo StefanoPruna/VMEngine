@@ -18,6 +18,9 @@ typedef VertexArrayObject VAO;
 typedef shared_ptr<VAO> VAOPtr;
 typedef vector<VAOPtr> VAOStack;
 
+class ShaderProgram;
+typedef shared_ptr<ShaderProgram> ShaderPtr;
+
 //For shape data and VAOs Matrices
 typedef vector<float> PositionMatrix;
 typedef vector<vmuint> IndicesMatrix;
@@ -26,4 +29,26 @@ struct ShapeData
 {
 	vector<float> PositionMatrix;
 	vector<vmuint> IndecesMatrix;
+};
+
+//List of the geometric shapes available in the VAO
+enum class GeometricShapes
+{
+	Triangle = 0,
+	Polygon,
+	Circle
+};
+
+//store the paramater required to create a shader as a
+struct VFShaderParams
+{
+	const wchar_t* VertexShaderPath;
+	const wchar_t* FragmentShaderPath;
+};
+
+//types of shader that can be accepted in our shader program
+enum class ShaderTypes
+{
+	Vertex = 0,
+	Fragment
 };

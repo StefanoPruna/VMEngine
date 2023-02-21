@@ -22,8 +22,10 @@ public:
 
 	SDL_Window* GetWindow() const;
 
-	//Add a new VAO to the VAOStack
-	void CreateVAO();
+	//Add a new VAO to the VAOStack using a shape
+	void CreateVAO(GeometricShapes Shape);
+
+	void CreateShader(VFShaderParams ShaderFilePahts);
 
 private:
 	SDL_Window* SdlWindow;
@@ -34,4 +36,7 @@ private:
 	void HandleWireFrameMode(bool bShowWireFrameMode);
 	//set wireframe
 	bool bWireFrameMode;
+
+	//single shader
+	ShaderPtr Shader;
 };

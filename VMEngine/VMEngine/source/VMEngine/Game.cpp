@@ -45,8 +45,16 @@ Game::~Game()
 void Game::Run()
 {
 	if (!bIsGameOver)
+	{
+		Graphics->CreateShader({
+			L"Game/Shaders/SimpleShader/SimpleShader.svert",
+			L"Game/Shaders/SimpleShader/SimpleShader.sfrag"
+			});
 		//Create the vertex
-		Graphics->CreateVAO();
+		Graphics->CreateVAO(GeometricShapes::Triangle);
+		Graphics->CreateVAO(GeometricShapes::Polygon);
+		Graphics->CreateVAO(GeometricShapes::Circle);
+	}
 
 	while (!bIsGameOver)
 	{
